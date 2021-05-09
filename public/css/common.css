@@ -9,3 +9,20 @@
     height: 50px;
 }
 
+.transactionRow {
+    /* display: flex;
+    flex-direction: row; */
+    width: 100%;
+}
+
+.transactionCell {
+    border: 1px solid black;
+    /* flex-grow: 1; */
+    padding: 5px;
+    text-align: center;
+}
+
+.transactionHeader {
+    font-weight: bold;
+}
+

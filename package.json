@@ -19,6 +19,7 @@
     "express-session": "^1.14.2",
     "intuit-oauth": "^3.0.1",
     "ngrok": "^3.2.5",
+    "node-quickbooks": "^2.0.38",
     "path": "^0.12.7",
     "stripe": "^8.145.0"
   },
