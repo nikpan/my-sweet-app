@@ -153,8 +153,9 @@ module.exports = function(app) {
    * create a sales receipt in QBO company
    */
   app.post('/createSalesReceipt', function (req, res) {
-    //createSalesReceipt(amount, description, quantity);
     console.debug(JSON.stringify(req.body, null, 2));
+    var stripeTransaction = req.body;
+    createSalesReceipt(stripeTransaction.amount/100, stripeTransaction.description, stripeTransaction.createdTime, stripeTransaction.id, stripeTransaction.customerEmail, stripeTransaction.customerName);
     res.send('createSalesReceipt response');
   });
 
@@ -171,27 +172,31 @@ module.exports = function(app) {
   });
 }
 
-function createSalesReceipt(amount, description, qty) {
+function createSalesReceipt(amount, description, date, stripeId, email, customerName) {
   var receipt = {
     Line: [
       {
         Id: -1,
         DetailType: 'SalesItemLineDetail',
         SalesItemLineDetail: {
-          Qty: qty,
-          UnitPrice: 3 // Optional
+          Qty: 1,
+          UnitPrice: amount
         },
         Amount: amount,
         Description: description,
         LineNum: 1,
       }
-    ]
+    ],
+    TxnDate: date,
+    PaymentRefNum: stripeId,
+    BillEmail: { Address: email },
   };
 
   qbo.createSalesReceipt(receipt, function (err, salesReceiptResponse) {
     if (err) {
       console.log('error creating sales receipt');
       console.debug(err);
+      console.debug(err.Fault.Error);
     } else {
       console.debug(salesReceiptResponse);
     }
