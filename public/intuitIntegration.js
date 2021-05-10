@@ -47,18 +47,6 @@ function getCompanyInfo() {
   });
 }
 
-document.getElementById('retrieveToken').addEventListener('click', function response(e) {
-  e.preventDefault();
-  retrieveToken();
-});
-
-function retrieveToken() {
-  $.get('/retrieveToken', function (token) {
-      var token = (token!=null) ? token : 'Please Authorize Using Connect to Quickbooks first !';
-      $("#accessToken").html(token);
-  });
-}
-
 document.getElementById('refreshToken').addEventListener('click', function response(e) {
   e.preventDefault();
   refreshToken();

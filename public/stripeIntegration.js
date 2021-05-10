@@ -52,17 +52,24 @@ function disconnectStripe() {
 }
 
 function getStripeTransactionRow(transaction) {
-  var row = document.createElement('tr');
+  let row = document.createElement('tr');
   row.classList.add('transactionRow');
+  let synced = false;
+  let salesReceiptId = '';
   for (const key in transaction) {
-      var field = document.createElement('td');
-      field.classList.add('transactionCell');
-      field.innerText = transaction[key];
-      row.append(field);
+    if(key == 'qboSalesReceiptId') {
+      synced = transaction[key] != -1;
+      salesReceiptId = transaction[key];
+      continue;
+    }
+    let field = document.createElement('td');
+    field.classList.add('transactionCell');
+    field.innerText = transaction[key];
+    row.append(field);
   }
-  var actionButtonCell = document.createElement('td');
+  let actionButtonCell = document.createElement('td');
   actionButtonCell.classList.add('transactionCell');
-  actionButtonCell.append(createSendTransactionButton(transaction));
+  synced ? actionButtonCell.innerText = `SYNCED - ${salesReceiptId}` : actionButtonCell.append(createSendTransactionButton(transaction));
   row.append(actionButtonCell);
   return row;
 }
@@ -72,14 +79,17 @@ function getHeaderRow(transaction) {
   row.classList.add('transactionRow');
   row.classList.add('transactionHeader');
   for (const key in transaction) {
-      var field = document.createElement('td');
-      field.classList.add('transactionCell');
-      field.innerText = key;
-      row.append(field);
+    if(key == 'qboSalesReceiptId') {
+      continue;
+    }
+    var field = document.createElement('td');
+    field.classList.add('transactionCell');
+    field.innerText = key;
+    row.append(field);
   }
   var actionButtonHeader = document.createElement('td');
   actionButtonHeader.classList.add('transactionCell');
-  actionButtonHeader.innerText = 'action';
+  actionButtonHeader.innerText = 'action / qboSalesReceiptId';
   row.append(actionButtonHeader);
   return row;
 }
