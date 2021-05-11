@@ -32,47 +32,25 @@ $ cp .env.example .env
 ```
 Edit the `.env` file to add your:  
 
-
+* **CLIENT_ID:(required)** Client ID key for the Intuit Developer Account
+* **CLIENT_SECRET:(required)** Client Secret key for the Intuit Developer Account
+* **STRIPE_PUBLISHABLE_KEY:(required)** Publishable Key for the Stripe Developer Account 
+* **STRIPE_SECRET_KEY:(required)** Secret Key for the Stripe Developer Account
+* **ENVIRONMENT:(required)** Environment for the Intuit Company; Set to `sandbox`
+* **REDIRECT_URI:(required)** Redirect Uri for Intuit OAuth Callback
 * **PORT:(optional)** Optional port number for the app to be served
-* **NGROK_ENABLED:(optional)** By default it is set to `false`. If you want to serve the Sample App over HTTPS ( which is mandatory if you want to test this app using Production Credentials), set the variable to `true`
-
-
-
-### TLS / SSL (**optional**)
-
-If you want your enpoint to be exposed over the internet. The easiest way to do that while you are still developing your code locally is to use [ngrok](https://ngrok.com/).  
-
-You dont have to worry about installing ngrok. The sample application does that for you.   
-1. Just set `NGROK_ENABLED` = `true` in `.env` 
-
 
 ## Usage
 
 ```bash
-$ npm start
+$ npm run start
 ```
 
-### Without ngrok (if you are using localhost i.e `NGROK_ENABLED`=`false` in `.env`)
 You will see an URL as below:
 ```bash
-💳 Step 1 : Paste this URL in your browser : http://localhost:8000
-💳 Step 2 : Copy and Paste the clientId and clientSecret from : https://developer.intuit.com
-💳 Step 3 : Copy Paste this callback URL into `redirectURI` : http://localhost:8000/callback
-💻 Step 4 : Make Sure this redirect URI is also listed under the Redirect URIs on your app in : https://developer.intuit.com
+Server listening on port 8000
+Paste this URL in your browser to access the app: http://localhost:8000
 ```
-
-### With ngrok (if you are using ngrok i.e `NGROK_ENABLED`=`true` in `.env`)
-
-Your will see an URL as below : 
-```bash
-💳 Step 1 : Paste this URL in your browser :  https://9b4ee833.ngrok.io 
-💳 Step 2 : Copy and Paste the clientId and clientSecret from : https://developer.intuit.com
-💳 Step 3 : Copy Paste this callback URL into `redirectURI` : https://9b4ee833.ngrok.io/callback
-💻 Step 4 : Make Sure this redirect URI is also listed under the Redirect URIs on your app in : https://developer.intuit.com
-```
-
-Click on the URL and follow through the instructions given in the sample app.
-
 
 ## Links
 

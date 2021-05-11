@@ -5,7 +5,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const { json, urlencoded } = require('body-parser');
-const ngrok = process.env.NGROK_ENABLED === 'true' ? require('ngrok') : null;
 const urlencodedParser = urlencoded({ extended: false });
 
 /**
@@ -26,8 +25,8 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
-const StripeConnection = require('./stripeConnector');
-const QBOConnection = require('./qboConnector');
+const StripeConnection = require('./src/stripeConnector');
+const QBOConnection = require('./src/qboConnector');
 const stripeConnection = new StripeConnection();
 const qboConnection = new QBOConnection();
 
@@ -168,51 +167,12 @@ function getCustomerById(customerId) {
 }
 
 /**
- * Start server on HTTP (will use ngrok for HTTPS forwarding)
+ * Start server on HTTP
  */
 const server = app.listen(process.env.PORT || 8000, () => {
-  console.log(`💻 Server listening on port ${server.address().port}`);
-  if (!ngrok) {
-    redirectUri = `${server.address().port}` + '/callback';
-    console.log(
-      `💳  Step 1 : Paste this URL in your browser : ` +
-        'http://localhost:' +
-        `${server.address().port}`,
-    );
-    console.log(
-      '💳  Step 2 : Copy and Paste the clientId and clientSecret from : https://developer.intuit.com',
-    );
-    console.log(
-      `💳  Step 3 : Copy Paste this callback URL into redirectURI :` +
-        'http://localhost:' +
-        `${server.address().port}` +
-        '/callback',
-    );
-    console.log(
-      `💻  Step 4 : Make Sure this redirect URI is also listed under the Redirect URIs on your app in : https://developer.intuit.com`,
-    );
-  }
+  console.log(`Server listening on port ${server.address().port}`);
+  redirectUri = `${server.address().port}` + '/callback';
+  console.log(
+    `Paste this URL in your browser to access the app: http://localhost:${server.address().port}`,
+  );
 });
-
-/**
- * Optional : If NGROK is enabled
- */
-if (ngrok) {
-  console.log('NGROK Enabled');
-  ngrok
-    .connect({ addr: process.env.PORT || 8000 })
-    .then((url) => {
-      redirectUri = `${url}/callback`;
-      console.log(`💳 Step 1 : Paste this URL in your browser :  ${url}`);
-      console.log(
-        '💳 Step 2 : Copy and Paste the clientId and clientSecret from : https://developer.intuit.com',
-      );
-      console.log(`💳 Step 3 : Copy Paste this callback URL into redirectURI :  ${redirectUri}`);
-      console.log(
-        `💻 Step 4 : Make Sure this redirect URI is also listed under the Redirect URIs on your app in : https://developer.intuit.com`,
-      );
-    })
-    .catch(() => {
-      process.exit(1);
-    });
-}

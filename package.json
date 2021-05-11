@@ -1,16 +1,16 @@
 {
-  "name": "intuit-nodejsclient",
+  "name": "stripe-intuit-nodejs-craft-demo",
   "version": "1.0.0",
-  "description": "A sample NodeJs application to demonstrate the use of the client OAuth library",
+  "description": "A simple app built using Node.js and Express Framework to showcase Intuit + Stripe integration",
   "scripts": {
     "start": "node app",
     "test": "./node_modules/mocha/bin/mocha test/**/*-test.js --reporter spec",
     "snyk-protect": "snyk protect",
     "prepublish": "npm run snyk-protect"
   },
-  "author": "anil_kumar3@intuit.com",
+  "author": "nikhil.pangarkar@gmail.com",
   "license": "APACHE",
-  "homepage": "https://github.intuit.com/abisalehalliprasan/oauth-jsclient",
+  "homepage": "https://github.com/nikpan/my-sweet-app",
   "dependencies": {
     "body-parser": "latest",
     "dotenv": "^5.0.1",
@@ -18,8 +18,6 @@
     "express": "^4.14.0",
     "express-session": "^1.14.2",
     "intuit-oauth": "^3.0.1",
-    "ngrok": "^3.2.5",
-    "node-quickbooks": "^2.0.38",
     "path": "^0.12.7",
     "stripe": "^8.145.0"
   },
