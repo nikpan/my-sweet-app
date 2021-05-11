@@ -17,14 +17,15 @@ After connecting the two accounts users can import sales transactions from Strip
 * [Intuit Developer](https://developer.intuit.com) Account
 * [Stripe Developer](https://stripe.com/docs/development) Account
 
-### Via Github Repo (Recommended)
+### Install dependencies
 
 ```bash
-$ cd sample
 $ npm install
 ```
 
 ## Configuration
+
+### Local Config Settings
 
 Copy the contents from `.env.example` to `.env` within the sample directory:
 ```bash
@@ -40,6 +41,11 @@ Edit the `.env` file to add your:
 * **REDIRECT_URI:(required)** Redirect Uri for Intuit OAuth Callback
 * **PORT:(optional)** Optional port number for the app to be served
 
+### Developer Account Config Settings
+
+* Add `http://localhost:8000/stripeCallback` as the default [redirect URI](https://stripe.com/docs/connect/oauth-reference#redirect-uri) in your Stripe Developer Account
+* Add `http://localhost:8000/callback` as the default [redirect URI](https://developer.intuit.com/app/developer/appdetail/test/keys) in you Intuit Developer Account settings in the Keys and OAuth section under Development
+
 ## Usage
 
 ```bash
@@ -52,25 +58,8 @@ Server listening on port 8000
 Paste this URL in your browser to access the app: http://localhost:8000
 ```
 
-## Links
+## References
 
-Project Repo
-
-* https://github.com/intuit/oauth-jsclient
-
-Intuit OAuth2.0 API Reference
-
-* https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/oauth-2.0
-
-Intuit OAuth2.0 Playground
-
-* https://developer.intuit.com/app/developer/playground
-
-## Contributions
-
-Any reports of problems, comments or suggestions are most welcome.
-
-Please report these on [Issue Tracker in Github](https://github.com/intuit/oauth-jsclient/issues).
-
-
-[ss1]: https://help.developer.intuit.com/s/samplefeedback?cid=9010&repoName=Intuit-OAuth2.0-Sample-NodeJS
+* Intuit OAuth Sample Project Repo - https://github.com/intuit/oauth-jsclient
+* Intuit OAuth2.0 API Reference - https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/oauth-2.0
+* Stripe API Reference - https://stripe.com/docs/api
