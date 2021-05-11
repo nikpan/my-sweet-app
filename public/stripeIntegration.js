@@ -8,10 +8,10 @@ document.getElementById('getStripeTransactions').addEventListener('click', funct
   getStripeTransactions();
 });
 
-document.getElementById('disconnectStripe').addEventListener('click', function response(e) {
-  e.preventDefault();
-  disconnectStripe();
-});
+// document.getElementById('disconnectStripe').addEventListener('click', function response(e) {
+//   e.preventDefault();
+//   disconnectStripe();
+// });
 
 function authorizeStripe() {
   stripeAuthUri = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_JOxqdAa5BkPVbvVrVz2psEjLmfHqm4wy&scope=read_only'
@@ -23,12 +23,31 @@ function authorizeStripe() {
           if (win.document.URL.indexOf("code") != -1) {
               window.clearInterval(pollOAuth);
               win.close();
-              location.reload();
+              getStripeCompanyInfo();
           }
       } catch (e) {
           console.log(e);
       }
   }, 100);
+}
+
+document.getElementById('getSCompanyInfo').addEventListener('click', function response(e) {
+  e.preventDefault();
+  getStripeCompanyInfo();
+});
+
+var stripeCompanyInfo = null;
+
+function getStripeCompanyInfo() {
+  $.get('/getStripeCompanyInfo', function (response) {
+    stripeCompanyInfo = response;
+    stripeCompanyInfo = {
+      CompanyName: response.settings.dashboard.display_name,
+      Id: response.id
+    }
+    $("#stripeCompanyInfo").html(JSON.stringify(stripeCompanyInfo, null, 4));
+    console.debug(stripeCompanyInfo);
+  });
 }
 
 function getStripeTransactions() {
@@ -40,6 +59,7 @@ function getStripeTransactions() {
         charge.createdTime = new Date(charge.createdTime*1000)
         tableDom.append(getStripeTransactionRow(charge));
       });
+      $("#stripeTransactions").empty();
       $("#stripeTransactions").append(tableDom);
       $("#stripeApiCall").html(JSON.stringify(response, null, 4));
   });

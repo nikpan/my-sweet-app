@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
+<title>My Sweet App</title>
 <head>
-    <link rel="apple-touch-icon icon shortcut" type="image/png" href="https://plugin.intuitcdn.net/sbg-web-shell-ui/6.3.0/shell/harmony/images/QBOlogo.png">
+    <link rel="apple-touch-icon icon shortcut" type="image/png"
+        href="https://plugin.intuitcdn.net/sbg-web-shell-ui/6.3.0/shell/harmony/images/QBOlogo.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
@@ -10,46 +12,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
+
 <body>
 
-<div class="container">
-    <div class="well text-center">
-        <h1>My Sweet App</h1>
-        <br>
+    <div class="container">
+        <br />
+        <div class="well text-center">
+            <h1>My Sweet App: Stripe + Intuit Integration</h1>
+            <br>
+        </div>
+        <br />
+        <div id="IntegrationContainer">
+            <div id="IntuitIntegrationCol" class="sweet-column">
+                <h2>Intuit Integration</h2>
+                <p>Click the <b>Connect to QuickBooks</b> button below.</p>
+                <pre style="display: none;" id="accessToken"># Access Token Response will be displayed here</pre>
+                <button type="button" id="authorizeIntuit" class="btn btn-success">Connect to QuickBooks</button>
+                <button type="button" id="refreshToken" class="btn btn-success">Refresh Token</button>
+
+                <hr />
+
+                <h2>Connected Intuit Company Info</h2>
+                <p>Click the <b>Connect to QuickBooks</b> button above to connect to a QBO company</p>
+                <pre id="intuitCompanyInfo"># Connected Intuit Company Info will be displayed here</pre>
+                <button type="button" id="getCompanyInfo" class="btn btn-success">Refresh Company Info</button>
+            </div>
+            <div id="StripeIntegrationCol" class="sweet-column">
+                <h2>Stripe Integration</h2>
+                <p>Stripe Integration buttons</p>
+                <button type="button" id="authorizeStripe" class="btn btn-success">Connect to Stripe</button>
+                <!-- <button type="button" id="disconnectStripe" class="btn btn-success">Disconnect Stripe</button> -->
+
+                <hr />
+
+                <h2>Connected Stripe Company Info</h2>
+                <p>Click the <b>Connect to Stripe</b> button above to connect to a Stripe payments account</p>
+                <pre id="stripeCompanyInfo"># Connected Stripe Company Info will be displayed here</pre>
+                <button type="button" id="getSCompanyInfo" class="btn btn-success">Refresh Company Info</button>
+            </div>
+        </div>
+
+        <hr />
+
+        <h2>Integration Workspace</h2>
+        <pre id="stripeApiCall" style="display: none;"># Stripe API Call Response will be displayed here</pre>
+        <button type="button" id="getStripeTransactions" class="btn btn-success">Get Stripe Transactions</button>
+        <br />
+        <br />
+        <div id="stripeTransactions"></div>
+
+        <hr />
     </div>
-    <br />
-    <h2>Intuit Integration</h2>
-    <p>Now click the <b>Connect to QuickBooks</b> button below.</p>
-    <pre id="accessToken"># Access Token Response will be displayed here</pre>
-    <!-- <a class="imgLink" href="#" id="authorizeIntuit" ><img src="./images/C2QB_green_btn_lg_default.png" width="178" /></a> -->
-    <button  type="button" id="authorizeIntuit" class="btn btn-success">Connect to QuickBooks</button>
-    <button  type="button" id="refreshToken" class="btn btn-success">Refresh Token</button>
-    
-    <hr />
 
-    <h2>Make an Intuit API call</h2>
-    <p>If there is no access token or the access token is invalid, click either the <b>Connect to QucikBooks</b> or <b>Sign with Intuit</b> button above.</p>
-    <pre id="intuitApiCall"># Intuit API Call Response will be displayed here</pre>
-    <button  type="button" id="getCompanyInfo" class="btn btn-success">Get Company Info</button>
+    <script type="text/javascript" src="intuitIntegration.js"></script>
+    <script type="text/javascript" src="stripeIntegration.js"></script>
 
-    <hr />
-
-    <h2>Stripe Integration</h2>
-    <p>Stripe Integration buttons</p>
-    <pre id="stripeApiCall"># Stripe API Call Response will be displayed here</pre>
-    <button  type="button" id="authorizeStripe" class="btn btn-success">Connect to Stripe</button>
-    <button  type="button" id="getStripeTransactions" class="btn btn-success">Get Stripe Transactions</button>
-    <button  type="button" id="disconnectStripe" class="btn btn-success">Disconnect Stripe</button>
-    <div id="stripeTransactions"></div>
-
-    <hr />
-</div>
-
-<script type="text/javascript" src="intuitIntegration.js"></script>
-<script type="text/javascript" src="stripeIntegration.js"></script>
-
-<script type="text/javascript">
-</script>
+    <script type="text/javascript">
+    </script>
 
 </body>
+
 </html>

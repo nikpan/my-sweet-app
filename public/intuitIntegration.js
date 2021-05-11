@@ -19,7 +19,7 @@ function authorizeIntuit() {
               if (win.document.URL.indexOf("code") != -1) {
                   window.clearInterval(pollOAuth);
                   win.close();
-                  location.reload();
+                  getCompanyInfo();
               }
           } catch (e) {
               console.log(e)
@@ -39,10 +39,9 @@ function getCompanyInfo() {
   $.get('/getCompanyInfo', function (response) {
     companyInfo = {
       CompanyName: response.CompanyInfo.CompanyName,
-      CompanyAddr: response.CompanyInfo.CompanyAddr,
       Id: response.CompanyInfo.Id
     }
-    $("#intuitApiCall").html(JSON.stringify(companyInfo, null, 4));
+    $("#intuitCompanyInfo").html(JSON.stringify(companyInfo, null, 4));
     console.debug(companyInfo);
   });
 }

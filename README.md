@@ -60,6 +60,6 @@ Paste this URL in your browser to access the app: http://localhost:8000
 
 ## References
 
-* Intuit OAuth Sample Project Repo - https://github.com/intuit/oauth-jsclient
-* Intuit OAuth2.0 API Reference - https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/oauth-2.0
-* Stripe API Reference - https://stripe.com/docs/api
+* Intuit OAuth Sample Project Repo - [github repo link](https://github.com/intuit/oauth-jsclient)
+* Intuit OAuth2.0 API Reference - [Intuit API link](https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/oauth-2.0)
+* Stripe API Reference - [Stripe API link](https://stripe.com/docs/api)

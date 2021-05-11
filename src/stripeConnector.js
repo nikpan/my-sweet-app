@@ -30,6 +30,26 @@ class StripeConnection {
     });
   }
 
+  getCompanyInfo() {
+    if(this.connectedAccountUserId == '') {
+      console.debug('No Stripe Account connected');
+      return {};
+    } 
+    if(this.connectedAccountInfo == '') {
+      console.debug('Account Info not yet synced');
+      return {};
+    }
+    return stripe.accounts.retrieve(this.connectedAccountInfo.id)
+    .then((accountInfo) => {
+      console.debug(accountInfo);
+      return accountInfo;
+    })
+    .catch(function (e) {
+      console.debug(e);
+      return {};
+    });
+  }
+
   getStripeCustomers() {
     if(this.connectedAccountUserId == '') {
       console.debug('No Stripe Account connected');

@@ -43,6 +43,15 @@ app.get('/stripeCallback', function (req, res) {
 });
 
 /**
+ * getStripeCompanyInfo - get the company info for the connected stripe account
+ */
+app.get('/getStripeCompanyInfo', async function (_req, res) {
+  console.log('getStripeCompanyInfo called');
+  let companyInfo = await stripeConnection.getCompanyInfo();
+  res.send(companyInfo);
+})
+
+/**
  * getStripeTransactions - get transactions from stripe account
  */
 app.get('/getStripeTransactions', async function (_req, res) {

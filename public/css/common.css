@@ -26,3 +26,11 @@
     font-weight: bold;
 }
 
+#IntegrationContainer {
+    display: flex;
+}
+
+.sweet-column {
+    padding: 5px;
+}
+
