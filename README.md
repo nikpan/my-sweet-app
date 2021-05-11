@@ -1,12 +1,13 @@
 
-[![Sample Banner](./public/images/Sample.png)][ss1]
-
-Intuit OAuth2.0 Sample - NodeJS
+Intuit + Stripe OAuth2.0 Craft Demo Problem - NodeJS
 ==========================================================
 
 ## Overview
 
-This is a `sample` app built using Node.js and Express Framework to showcase how to Authorize and Authenticate using Intuit's OAuth2.0 Client library.
+This is a POC app built using Node.js and Express Framework to showcase Intuit + Stripe integration. 
+The app allows users to connect to their Intuit QuickBooks Company account using [Intuit's OAuth2.0 Client library](https://developer.intuit.com/app/developer/qbpayments/docs/develop/authentication-and-authorization/oauth-2.0).
+Users can connect to their Stripe Account using [Stripe's OAuth connect flow](https://stripe.com/docs/connect/oauth-reference).
+After connecting the two accounts users can import sales transactions from Stripe, review them in the Web App, and export to Intuit's QBO as Sales Receipts. The app also recognizes charges that are already synced to prevent exporting duplicate transactions. 
 
 ## Installation
 
@@ -14,6 +15,7 @@ This is a `sample` app built using Node.js and Express Framework to showcase how
 
 * [Node.js](http://nodejs.org) >= 7.0.0
 * [Intuit Developer](https://developer.intuit.com) Account
+* [Stripe Developer](https://stripe.com/docs/development) Account
 
 ### Via Github Repo (Recommended)
 

@@ -1,13 +1,7 @@
 'use strict';
 
 require('dotenv').config();
-
-/**
- * Require the dependencies
- * @type {*|createApplication}
- */
 const express = require('express');
-
 const app = express();
 const path = require('path');
 const { json, urlencoded } = require('body-parser');
@@ -20,7 +14,6 @@ const urlencodedParser = urlencoded({ extended: false });
 app.use(urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.engine('html', require('ejs').renderFile);
-
 app.set('view engine', 'html');
 app.use(json());
 
@@ -38,7 +31,6 @@ const QBOConnection = require('./qboConnector');
 const stripeConnection = new StripeConnection();
 const qboConnection = new QBOConnection();
 
-
 /**
  * stripeCallback - callback from stripe OAuth
  */
@@ -52,9 +44,9 @@ app.get('/stripeCallback', function (req, res) {
 });
 
 /**
-   * getStripeTransactions - get transactions from stripe account
-   */
- app.get('/getStripeTransactions', async function (req, res) {
+ * getStripeTransactions - get transactions from stripe account
+ */
+app.get('/getStripeTransactions', async function (_req, res) {
   console.log('getStripeTransactions called');
   let customers = await stripeConnection.getStripeCustomers();
   let charges = await stripeConnection.getStripeTransactions();
@@ -129,7 +121,7 @@ app.post('/createSalesReceipt', function (req, res) {
   qboConnection.createSalesReceipt(stripeTransaction.amount/100, stripeTransaction.description, stripeTransaction.createdTime, stripeTransaction.id, stripeTransaction.customerEmail, stripeTransaction.customerName)
   .then(() => {
     res.send('createSalesReceipt done!');
-  })
+  });
 });
 
 /**
@@ -174,7 +166,6 @@ function getCustomerById(customerId) {
     };
   }
 }
-
 
 /**
  * Start server on HTTP (will use ngrok for HTTPS forwarding)

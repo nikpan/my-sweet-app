@@ -98,19 +98,18 @@ function createSendTransactionButton(transaction) {
   var pushTransactionButton = document.createElement('button');
   pushTransactionButton.innerText = 'Send To QBO';
   pushTransactionButton.className = "btn btn-success";
-  pushTransactionButton.addEventListener('click', function(e) {
+  pushTransactionButton.addEventListener('click', (e) => {
     e.preventDefault();
-    sendTransactionsToQbo(transaction);
+    sendTransactionsToQbo(transaction, pushTransactionButton.parentElement);
+    pushTransactionButton.style.display = 'none';
+    pushTransactionButton.parentElement.innerText = 'Syncing';
   });
   return pushTransactionButton;
 }
 
-function sendTransactionsToQbo(transaction) {
-  $.ajax('/createSalesReceipt', {
-    data: JSON.stringify(transaction),
-    contentType: 'application/json',
-    type: 'POST'
-  }, function (response) {
+function sendTransactionsToQbo(transaction, actionButtonCell) {
+  $.post('/createSalesReceipt', transaction, (response) => {
+    actionButtonCell.innerText = 'Synced';
     console.debug(response);
   })
 }

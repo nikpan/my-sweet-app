@@ -58,26 +58,3 @@ function refreshToken() {
       $("#accessToken").html(token);
   });
 }
-
-document.getElementById('getSalesReceipt').addEventListener('click', function response(e) {
-  e.preventDefault();
-  getSalesReceipt();
-});
-
-function getSalesReceipt() {
-  $.get('/getSalesReceipt?id=147', function (response) {
-      $("#intuitApiCall").html(JSON.stringify(response, null, 4));
-      console.debug(response);
-  });
-};
-
-document.getElementById('createSalesReceipt').addEventListener('click', function response(e) {
-  e.preventDefault();
-  createSalesReceipt();
-});
-
-function createSalesReceipt() {
-  $.get('/createSalesReceipt', function (response) {
-      console.debug(response);
-  });
-};
