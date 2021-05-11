@@ -35,7 +35,7 @@ Edit the `.env` file to add your:
 
 * **CLIENT_ID:(required)** Client ID key for the Intuit Developer Account
 * **CLIENT_SECRET:(required)** Client Secret key for the Intuit Developer Account
-* **STRIPE_PUBLISHABLE_KEY:(required)** Publishable Key for the Stripe Developer Account 
+* **STRIPE_CLIENT_ID:(required)** Client ID key for the Stripe Developer Account 
 * **STRIPE_SECRET_KEY:(required)** Secret Key for the Stripe Developer Account
 * **ENVIRONMENT:(required)** Environment for the Intuit Company; Set to `sandbox`
 * **REDIRECT_URI:(required)** Redirect Uri for Intuit OAuth Callback

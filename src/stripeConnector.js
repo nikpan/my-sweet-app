@@ -9,6 +9,14 @@ class StripeConnection {
 
   }
 
+  getAuthUri() {
+    const scope = 'read_only';
+    const responseType = 'code';
+    const clientId = process.env.STRIPE_CLIENT_ID;
+    const authUri = `https://connect.stripe.com/oauth/authorize?response_type=${responseType}&client_id=${clientId}&scope=${scope}`;
+    return authUri;
+  }
+
   handleStripeOAuthCallback(code) {
     return stripe.oauth.token({
       grant_type: 'authorization_code',

@@ -73,23 +73,30 @@ app.get('/getStripeTransactions', async function (_req, res) {
 /**
  * disconnectStripe - disconnect stripe account and delete connected account data
  */
-app.get('/disconnectStripe', function (req, res) {
+app.get('/stripeDisconnect', function (req, res) {
   console.log('disconnectStripe called');
   stripeConnection = new StripeConnection();
   res.send('disconnectStripe response');
 });
 
 /**
-   * Get the AuthorizeUri for Intuit connect
-   */
- app.get('/authUri', urlencodedParser, function (_req, res) {
+ * Get the AuthorizeUri for Intuit connect
+ */
+app.get('/qboAuthUri', urlencodedParser, function (_req, res) {
   res.send(qboConnection.getAuthUri());
+});
+
+/**
+ * Get the AuthorizeUri for Stripe connect
+ */
+ app.get('/stripeAuthUri', urlencodedParser, function (_req, res) {
+  res.send(stripeConnection.getAuthUri());
 });
 
 /**
  * Handle the callback to extract the `Auth Code` and exchange them for `Bearer-Tokens`
  */
-app.get('/callback', function (req, res) {
+app.get('/qboCallback', function (req, res) {
   qboConnection.handleIntuitOAuthCallback(req.url, req.query.realmId)
   .then(() => {
     qboConnection.printState();
@@ -135,7 +142,7 @@ app.post('/createSalesReceipt', function (req, res) {
 /**
  * disconnect - Disconnect connected intuit account
  */
-app.get('/disconnect', function (_req, res) {
+app.get('/qboDisconnect', function (_req, res) {
   res.redirect(qboConnection.getDisconnectUri());
 });
 

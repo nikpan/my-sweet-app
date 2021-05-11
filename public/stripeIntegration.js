@@ -14,21 +14,27 @@ document.getElementById('getStripeTransactions').addEventListener('click', funct
 // });
 
 function authorizeStripe() {
-  stripeAuthUri = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_JOxqdAa5BkPVbvVrVz2psEjLmfHqm4wy&scope=read_only'
-  var parameters = "location=1,width=800,height=650";
-  parameters += ",left=" + (screen.width - 800) / 2 + ",top=" + (screen.height - 650) / 2;
-  var win = window.open(stripeAuthUri, 'connectPopup', parameters);
-  var pollOAuth = window.setInterval(function () {
-      try {
-          if (win.document.URL.indexOf("code") != -1) {
-              window.clearInterval(pollOAuth);
-              win.close();
-              getStripeCompanyInfo();
-          }
-      } catch (e) {
-          console.log(e);
-      }
-  }, 100);
+  var jsonBody = {};
+  
+  $.get('/stripeAuthUri', {json:jsonBody}, function (uri) {
+    console.log('The Auth Uris is :'+uri);
+  })
+  .then(function (stripeAuthUri) {
+    var parameters = "location=1,width=800,height=650";
+    parameters += ",left=" + (screen.width - 800) / 2 + ",top=" + (screen.height - 650) / 2;
+    var win = window.open(stripeAuthUri, 'connectPopup', parameters);
+    var pollOAuth = window.setInterval(function () {
+        try {
+            if (win.document.URL.indexOf("code") != -1) {
+                window.clearInterval(pollOAuth);
+                win.close();
+                getStripeCompanyInfo();
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }, 100);
+  });
 }
 
 document.getElementById('getSCompanyInfo').addEventListener('click', function response(e) {
@@ -66,7 +72,7 @@ function getStripeTransactions() {
 }
 
 function disconnectStripe() {
-  $.get('/disconnectStripe', function (response) {
+  $.get('/stripeDisconnect', function (response) {
       console.debug(response);
   });
 }

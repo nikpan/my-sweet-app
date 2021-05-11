@@ -6,7 +6,7 @@ document.getElementById('authorizeIntuit').addEventListener('click', function re
 function authorizeIntuit() {
   var jsonBody = {};
 
-  $.get('/authUri', {json:jsonBody}, function (uri) {
+  $.get('/qboAuthUri', {json:jsonBody}, function (uri) {
       console.log('The Auth Uris is :'+uri);
   })
   .then(function (authUri) {
