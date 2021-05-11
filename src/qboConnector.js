@@ -97,10 +97,11 @@ class QBOConnection {
       body: receipt 
     })
     .then(createSalesReceiptResponse => {
-      console.debug(createSalesReceiptResponse);
+      return createSalesReceiptResponse;
     })
     .catch(err => {
       console.debug(err);
+      return {};
     });
   }
 

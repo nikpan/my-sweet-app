@@ -49,7 +49,6 @@ class StripeConnection {
     }
     return stripe.accounts.retrieve(this.connectedAccountInfo.id)
     .then((accountInfo) => {
-      console.debug(accountInfo);
       return accountInfo;
     })
     .catch(function (e) {

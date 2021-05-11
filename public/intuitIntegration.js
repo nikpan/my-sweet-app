@@ -36,7 +36,7 @@ document.getElementById('getCompanyInfo').addEventListener('click', function res
 var companyInfo = null;
 
 function getCompanyInfo() {
-  $.get('/getCompanyInfo', function (response) {
+  $.get('/getQboCompanyInfo', function (response) {
     companyInfo = {
       CompanyName: response.CompanyInfo.CompanyName,
       Id: response.CompanyInfo.Id

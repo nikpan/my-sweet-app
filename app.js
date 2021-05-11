@@ -107,7 +107,7 @@ app.get('/qboCallback', function (req, res) {
 /**
  * getCompanyInfo - get company info for connected intuit account
  */
-app.get('/getCompanyInfo', function (_req, res) {
+app.get('/getQboCompanyInfo', function (_req, res) {
   qboConnection.getCompanyInfo()
   .then(companyInfo => {
     res.send(companyInfo);
@@ -131,7 +131,6 @@ app.get('/refreshAccessToken', function (_req, res) {
  * create a sales receipt in QBO company
  */
 app.post('/createSalesReceipt', function (req, res) {
-  console.debug(JSON.stringify(req.body, null, 2));
   var stripeTransaction = req.body;
   qboConnection.createSalesReceipt(stripeTransaction.amount/100, stripeTransaction.description, stripeTransaction.createdTime, stripeTransaction.id, stripeTransaction.customerEmail, stripeTransaction.customerName)
   .then(() => {
