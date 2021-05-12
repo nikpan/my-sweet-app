@@ -1,0 +1,26 @@
+Demo Scenario
+- Have a business named WW.
+- Customers of Business WW buy something and pay via stripe.
+- Import transactions from Stripe into web app.
+- Review imported transactions. Maybe edit them.
+- Push transactions from web app to QBO
+
+Web App Design
+1. Connect with QBO button -> allows users (eg. owner of WW) to login to their intuit account and connect their qbo company to web app.
+2. Connect with Stripe button -> allows users (eg. owner of WW) to login to their stripe account and connect their stripe account to web app.
+3. Pull transactions from connected stripe account and display in a table
+4. Each row is a separate stripe transaction. Each row will have an 'Sync to QBO' button.
+5. The 'Sync to QBO' button will push the corresponding transaction to QBO by creating a sales receipt in QBO.
+6. If the transaction has already been synced with QBO the 'Sync to QBO' button should be disabled/not shown.
+
+Future Ideas
+1. Combine multiple stripe transactions into one Intuit transaction.
+2. Transfer customer data from Stripe to QBO to derive customer related insights.
+3. Transfer location data from Stripe to QBO to derive location based insights.
+4. Connect to multiple stripe accounts and/or QBO companies. Data from multiple stripe accounts going to same QBO account.
+
+Other Things to Consider - TODO
+1. Unit tests / Functional Tests - 
+2. Fault tolerance - what happens when sync fails.
+3. Considerations for deploy on cloud.
+4. Scalability of the web app.
