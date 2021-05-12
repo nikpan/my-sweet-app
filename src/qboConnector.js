@@ -32,7 +32,7 @@ class QBOConnection {
     return authUri;
   }
 
-  handleIntuitOAuthCallback(requestUrl, realmId) {
+  handleIntuitOAuthCallback(requestUrl) {
     return this.oauthClient.createToken(requestUrl)
     .then((authResponse) => {
       this.companyID = this.oauthClient.getToken().realmId;

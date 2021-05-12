@@ -97,7 +97,7 @@ app.get('/qboAuthUri', urlencodedParser, function (_req, res) {
  * Handle the callback to extract the `Auth Code` and exchange them for `Bearer-Tokens`
  */
 app.get('/qboCallback', function (req, res) {
-  qboConnection.handleIntuitOAuthCallback(req.url, req.query.realmId)
+  qboConnection.handleIntuitOAuthCallback(req.url)
   .then(() => {
     qboConnection.printState();
     res.send('intuit authcallback response');
@@ -184,10 +184,14 @@ function getCustomerById(customerId) {
 /**
  * Start server on HTTP
  */
-const server = app.listen(process.env.PORT || 8000, () => {
-  console.log(`Server listening on port ${server.address().port}`);
-  redirectUri = `${server.address().port}` + '/callback';
-  console.log(
-    `Paste this URL in your browser to access the app: http://localhost:${server.address().port}`,
-  );
-});
+if(!module.parent) {
+  const server = app.listen(process.env.PORT || 8000, () => {
+    console.log(`Server listening on port ${server.address().port}`);
+    redirectUri = `${server.address().port}` + '/callback';
+    console.log(
+      `Paste this URL in your browser to access the app: http://localhost:${server.address().port}`,
+    );
+  });
+}
+
+module.exports = app;

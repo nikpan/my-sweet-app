@@ -4,7 +4,7 @@
   "description": "A simple app built using Node.js and Express Framework to showcase Intuit + Stripe integration",
   "scripts": {
     "start": "node app",
-    "test": "./node_modules/mocha/bin/mocha test/**/*-test.js --reporter spec",
+    "test": "mocha test/**/*Test.js --reporter spec",
     "snyk-protect": "snyk protect",
     "prepublish": "npm run snyk-protect"
   },
@@ -18,11 +18,13 @@
     "express": "^4.14.0",
     "express-session": "^1.14.2",
     "intuit-oauth": "^3.0.1",
+    "mocha": "^8.4.0",
     "path": "^0.12.7",
     "stripe": "^8.145.0"
   },
   "devDependencies": {
-    "snyk": "^1.316.1"
+    "snyk": "^1.316.1",
+    "zombie": "^6.1.4"
   },
   "snyk": true
 }
