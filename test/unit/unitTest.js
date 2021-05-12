@@ -15,7 +15,20 @@ describe('getAuthUri', function() {
     assert.strictEqual(authUri.indexOf('scope') !== -1, true);
   });
 
-  it('intuit auth uri should contain scope', function() {
-    assert.strictEqual(authUri.indexOf('scope') !== -1, true);
+});
+
+describe('getSalesReceiptByPaymentRef', function () {
+  var salesReceipt = null;
+  before(function (done) {
+    qboConnection.getSalesReceiptByPaymentRef('')
+    .then(resp => {
+      salesReceipt = resp;
+      done();
+    });
   });
+
+  it('should return {} when not connected', function() {
+    assert.notStrictEqual(salesReceipt, {});
+  })
+
 });
