@@ -58,6 +58,12 @@ Server listening on port 8000
 Paste this URL in your browser to access the app: http://localhost:8000
 ```
 
+## Test
+
+```bash
+$ npm run test
+```
+
 ## References
 
 * Intuit OAuth Sample Project Repo - [github repo link](https://github.com/intuit/oauth-jsclient)
